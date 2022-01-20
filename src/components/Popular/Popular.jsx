@@ -9,8 +9,8 @@ import {
   MovieTitle,
   VoteAverage,
   InfoThumb,
-  LoadMore,
 } from "./Popular.styled";
+import { Button } from "../Button.styled";
 
 const Popular = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -22,10 +22,9 @@ const Popular = () => {
 
   useEffect(() => {
     fetchPopular(page).then((data) =>
-      setPopularMovies([...popularMovies, ...data.results])
+      setPopularMovies((state) => [...state, ...data.results])
     );
   }, [page]);
-  console.log(popularMovies);
 
   return (
     <>
@@ -48,9 +47,9 @@ const Popular = () => {
           );
         })}
       </Gallery>
-      <LoadMore type="button" onClick={onMoreClick}>
+      <Button type="button" onClick={onMoreClick}>
         Load more...
-      </LoadMore>
+      </Button>
     </>
   );
 };
