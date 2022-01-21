@@ -6,10 +6,10 @@ import {
   MovieTitle,
   VoteAverage,
   InfoThumb,
+  FilmLink,
 } from "./MoviesView.styled";
 import { Button, ButtonThumb } from "../Button.styled.js";
 import { Wrapper } from "../Wrapper.styled";
-import { Link } from "react-router-dom";
 
 const MoviesView = ({ movies, onClick, allLoaded }) => {
   return (
@@ -19,7 +19,7 @@ const MoviesView = ({ movies, onClick, allLoaded }) => {
           let imgUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
           return (
             <GalleryItem key={movie.id}>
-              <Link to={`${movie.id}`}>
+              <FilmLink to={`${movie.id}`}>
                 <ImgContainer>
                   <Poster src={imgUrl} alt={movie.original_title} />
                 </ImgContainer>
@@ -30,7 +30,7 @@ const MoviesView = ({ movies, onClick, allLoaded }) => {
                   <MovieTitle>{movie.original_name}</MovieTitle>
                   <VoteAverage>{movie.vote_average}</VoteAverage>
                 </InfoThumb>
-              </Link>
+              </FilmLink>
             </GalleryItem>
           );
         })}

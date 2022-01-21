@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Gallery = styled.ul`
   list-style-type: none;
@@ -47,4 +48,9 @@ export const InfoThumb = styled.div`
   flex-wrap: wrap;
   padding: 10px;
   justify-content: space-between;
+`;
+export const FilmLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
+  display: block;
 `;
