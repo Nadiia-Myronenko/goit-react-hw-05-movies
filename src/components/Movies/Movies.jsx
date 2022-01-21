@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { Button } from "../Button.styled";
 import { Message } from "../Message.styled";
 import Searchbar from "../Searchbar/Searchbar";
 import { ToastContainer } from "react-toastify";
 import { fetchMovies } from "../../services/api";
-import MovieView from "../MovieView/MovieView";
+import MoviesView from "../MoviesView/MoviesView";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -60,7 +59,7 @@ const Movies = () => {
       {status === "idle" && <Message>Enter key word for movie search!</Message>}
       {status === "pending" && <Message>Loading...</Message>}
       {status === "resolved" && (
-        <MovieView
+        <MoviesView
           movies={movies}
           onClick={onLoadMoreClick}
           allLoaded={allLoaded}

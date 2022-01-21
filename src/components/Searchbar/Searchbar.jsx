@@ -38,7 +38,7 @@ class Searchbar extends Component {
             type="text"
             autocomplete="off"
             name="keyWord"
-            placeholder="Search images and photos"
+            placeholder="Search movies"
             value={this.state.keyWord}
             onChange={this.handleKeywordChange}
           />
