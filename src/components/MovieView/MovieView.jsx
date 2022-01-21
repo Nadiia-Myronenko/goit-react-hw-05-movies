@@ -7,12 +7,13 @@ import {
   VoteAverage,
   InfoThumb,
 } from "./MovieView.styled";
-import { Button } from "../Button.styled.js";
+import { Button, ButtonThumb } from "../Button.styled.js";
+import { Wrapper } from "../Wrapper.styled";
 
-const MovieView = ({ movies, onClick }) => {
+const MovieView = ({ movies, onClick, allLoaded }) => {
   console.log(movies);
   return (
-    <>
+    <Wrapper>
       <Gallery>
         {movies.map((movie, index) => {
           let imgUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -32,10 +33,14 @@ const MovieView = ({ movies, onClick }) => {
           );
         })}
       </Gallery>
-      <Button type="button" onClick={onClick}>
-        Load more...
-      </Button>
-    </>
+      {!allLoaded && (
+        <ButtonThumb>
+          <Button type="button" onClick={onClick}>
+            Load more...
+          </Button>
+        </ButtonThumb>
+      )}
+    </Wrapper>
   );
 };
 export default MovieView;

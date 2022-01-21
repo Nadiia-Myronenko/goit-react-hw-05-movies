@@ -5,9 +5,7 @@ export const Gallery = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  width: 1200px;
 `;
 
 export const GalleryItem = styled.li`
@@ -16,6 +14,8 @@ export const GalleryItem = styled.li`
   border: 1px solid grey;
   border-radius: 5px;
   width: 320px;
+  background-color: #fff;
+  overflow: hidden;
 `;
 
 export const ImgContainer = styled.div`

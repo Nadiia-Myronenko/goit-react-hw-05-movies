@@ -12,11 +12,13 @@ const Movies = () => {
   const [page, setPage] = useState(1);
   const [error, setError] = useState("");
   const [status, setStatus] = useState("idle");
+  const [allLoaded, setAllLoaded] = useState(false);
 
   const handleFormSubmit = (keyWord) => {
     setKeyWord(keyWord);
     setPage(1);
     setMovies([]);
+    setAllLoaded(false);
     setStatus("idle");
   };
   const onLoadMoreClick = () => {
@@ -25,21 +27,28 @@ const Movies = () => {
 
   useEffect(() => {
     if (keyWord === "") {
+      setAllLoaded(true);
       return;
     }
     setStatus("pending");
+    setAllLoaded(true);
     fetchMovies(page, keyWord)
       .then((data) => {
         if (data) {
           setMovies((state) => [...state, ...data.results]);
           setStatus("resolved");
-          /*  window.scrollTo({
-              top: document.documentElement.scrollHeight,
-              behavior: "smooth",
-            });*/
+          setAllLoaded(false);
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+          if (data.results.length < 12) {
+            setAllLoaded(true);
+          }
         }
       })
       .catch((error) => {
+        setAllLoaded(true);
         setError(error);
         setStatus("rejected");
       });
@@ -51,7 +60,11 @@ const Movies = () => {
       {status === "idle" && <Message>Enter key word for movie search!</Message>}
       {status === "pending" && <Message>Loading...</Message>}
       {status === "resolved" && (
-        <MovieView movies={movies} onClick={onLoadMoreClick} />
+        <MovieView
+          movies={movies}
+          onClick={onLoadMoreClick}
+          allLoaded={allLoaded}
+        />
       )}
       {status === "rejected" && <Message>{error.message}</Message>}
       <ToastContainer
