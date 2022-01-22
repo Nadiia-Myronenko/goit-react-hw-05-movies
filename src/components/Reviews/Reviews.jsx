@@ -24,7 +24,7 @@ const Reviews = () => {
       <ul>
         {reviews.map((review, index) => {
           return (
-            <li>
+            <li key={index}>
               <h4>{review.author}</h4>
               <p>{review.content}</p>
               <p>

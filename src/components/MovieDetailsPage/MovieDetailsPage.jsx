@@ -1,6 +1,6 @@
 import { fetchMovie } from "../../services/api";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   MovieInfoWrapper,
   Poster,
@@ -11,11 +11,13 @@ import {
   NavigationBlock,
 } from "./MovieDetailsPage.styled";
 import { Link, Outlet } from "react-router-dom";
+import { Button } from "../Button.styled";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMovie(movieId)
@@ -28,9 +30,10 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const imgURL = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-  console.log(movie);
+
   return (
-    <div>
+    <>
+      <Button onClick={() => navigate(-1)}>← go back</Button>
       {movie && (
         <div>
           <MovieInfoWrapper>
@@ -64,7 +67,7 @@ const MovieDetailsPage = () => {
           <Outlet />
         </div>
       )}
-    </div>
+    </>
   );
 };
 export default MovieDetailsPage;
