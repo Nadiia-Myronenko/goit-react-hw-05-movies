@@ -41,3 +41,13 @@ export function fetchActors(movieId) {
     return response.json();
   });
 }
+export function fetchReviews(movieId) {
+  return fetch(
+    `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error("Something went wrong");
+    }
+    return response.json();
+  });
+}

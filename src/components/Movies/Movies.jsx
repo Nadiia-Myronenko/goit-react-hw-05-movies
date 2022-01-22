@@ -33,10 +33,11 @@ const Movies = () => {
     setAllLoaded(true);
     fetchMovies(page, keyWord)
       .then((data) => {
-        if (data) {
+        if (data.total_results) {
           setMovies((state) => [...state, ...data.results]);
           setStatus("resolved");
           setAllLoaded(false);
+          console.log(data);
           window.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: "smooth",
@@ -44,12 +45,15 @@ const Movies = () => {
           if (data.results.length < 12) {
             setAllLoaded(true);
           }
+        } else {
+          throw new Error("Information is not found");
         }
       })
       .catch((error) => {
         setAllLoaded(true);
         setError(error);
         setStatus("rejected");
+        console.log(error);
       });
   }, [keyWord, page]);
 
@@ -63,9 +67,10 @@ const Movies = () => {
           movies={movies}
           onClick={onLoadMoreClick}
           allLoaded={allLoaded}
+          error={error}
         />
       )}
-      {status === "rejected" && <Message>{error.message}</Message>}
+      {status === "rejected" && <Message>😕 {error.message}</Message>}
       <ToastContainer
         position="top-center"
         autoClose={2000}

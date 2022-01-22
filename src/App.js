@@ -30,4 +30,3 @@ function App() {
 }
 
 export default App;
-//    <Route path="cast" element={<Cast />} />

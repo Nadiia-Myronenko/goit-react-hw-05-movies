@@ -11,12 +11,13 @@ import {
 import { Button, ButtonThumb } from "../Button.styled.js";
 import { Wrapper } from "../Wrapper.styled";
 
-const MoviesView = ({ movies, onClick, allLoaded }) => {
+const MoviesView = ({ movies, onClick, allLoaded, error }) => {
   return (
     <Wrapper>
       <Gallery>
         {movies.map((movie) => {
           let imgUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
           return (
             <GalleryItem key={movie.id}>
               <FilmLink to={`${movie.id}`}>

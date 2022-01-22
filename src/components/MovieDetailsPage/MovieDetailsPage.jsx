@@ -16,7 +16,6 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [error, setError] = useState("");
-  console.log(movieId);
 
   useEffect(() => {
     fetchMovie(movieId)
