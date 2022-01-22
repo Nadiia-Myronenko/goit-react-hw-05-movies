@@ -28,7 +28,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const imgURL = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
+  console.log(movie);
   return (
     <div>
       {movie && (
@@ -41,7 +41,13 @@ const MovieDetailsPage = () => {
               <h4>Overview</h4>
               <Text>{movie.overview}</Text>
               <h4>Genres</h4>
-              <GenresList></GenresList>
+              {movie.genres && (
+                <GenresList>
+                  {movie.genres.map((genre, index) => (
+                    <li key={index}>{genre.name}</li>
+                  ))}
+                </GenresList>
+              )}
             </InfoThumb>
           </MovieInfoWrapper>
           <NavigationBlock>
