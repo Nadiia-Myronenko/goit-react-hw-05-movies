@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { fetchActors } from "../../services/api";
 import { ActorsCards, ActorCard, ActorInfo, Title } from "../Cast/Cast.styled";
 import defaultActor from "../../images/defaultActor.png";
+import { Message } from "../Message.styled";
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -12,7 +13,11 @@ const Cast = () => {
   useEffect(() => {
     fetchActors(movieId)
       .then((data) => {
-        return setActors(data.cast);
+        if (data.cast.length) {
+          return setActors(data.cast);
+        } else {
+          throw new Error("Information is not found");
+        }
       })
       .catch((error) => {
         setError(error);
@@ -22,6 +27,11 @@ const Cast = () => {
   return (
     <>
       <Title>Cast</Title>
+      {error && (
+        <Message>
+          We don't have any information about the cast for this movie.
+        </Message>
+      )}
       <ActorsCards>
         {actors.map((actor) => {
           let imgURL = "";

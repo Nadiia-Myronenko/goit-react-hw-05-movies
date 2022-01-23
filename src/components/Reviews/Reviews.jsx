@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchReviews } from "../../services/api";
 import { Title } from "./Reviews.styled";
+import { Message } from "../Message.styled";
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -11,7 +12,11 @@ const Reviews = () => {
   useEffect(() => {
     fetchReviews(movieId)
       .then((data) => {
-        return setReviews(data.results);
+        if (data.results.length) {
+          return setReviews(data.results);
+        } else {
+          throw new Error("Information is not found");
+        }
       })
       .catch((error) => {
         setError(error);
@@ -21,6 +26,7 @@ const Reviews = () => {
   return (
     <>
       <Title>Reviews</Title>
+      {error && <Message>We don't have any review for this movie.</Message>}
       <ul>
         {reviews.map((review, index) => {
           return (

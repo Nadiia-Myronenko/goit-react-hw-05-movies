@@ -37,7 +37,6 @@ const Movies = () => {
           setMovies((state) => [...state, ...data.results]);
           setStatus("resolved");
           setAllLoaded(false);
-          console.log(data);
           window.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: "smooth",
@@ -53,7 +52,6 @@ const Movies = () => {
         setAllLoaded(true);
         setError(error);
         setStatus("rejected");
-        console.log(error);
       });
   }, [keyWord, page]);
 

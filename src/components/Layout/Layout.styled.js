@@ -20,3 +20,13 @@ export const MyNavLink = styled(NavLink)`
     color: #fff;
   }
 `;
+export const Main = styled.main`
+  padding-bottom: 50px;
+`;
+export const Footer = styled.footer`
+  box-shadow: 0px 1px 4px #6f5a59;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  font-size: 12px;
+`;
