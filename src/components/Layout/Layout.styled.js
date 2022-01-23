@@ -29,4 +29,9 @@ export const Footer = styled.footer`
   padding: 20px;
   background-color: #fff;
   font-size: 12px;
+  margin-top: -20px;
+  height: 20px;
+`;
+export const Wrapper = styled.div`
+  min-height: 100%;
 `;
