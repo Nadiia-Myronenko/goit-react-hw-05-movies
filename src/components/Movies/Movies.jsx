@@ -4,6 +4,7 @@ import Searchbar from "../Searchbar/Searchbar";
 import { ToastContainer } from "react-toastify";
 import { fetchMovies } from "../../services/api";
 import MoviesView from "../MoviesView/MoviesView";
+import { Wrapper } from "../Wrapper.styled";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -56,7 +57,7 @@ const Movies = () => {
   }, [keyWord, page]);
 
   return (
-    <div>
+    <Wrapper>
       <Searchbar onSubmit={handleFormSubmit} />
       {status === "idle" && <Message>Enter key word for movie search!</Message>}
       {status === "pending" && <Message>Loading...</Message>}
@@ -80,7 +81,7 @@ const Movies = () => {
         draggable
         pauseOnHover
       />
-    </div>
+    </Wrapper>
   );
 };
 export default Movies;
