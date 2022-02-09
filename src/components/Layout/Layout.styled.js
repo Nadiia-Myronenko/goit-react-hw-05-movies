@@ -21,7 +21,7 @@ export const MyNavLink = styled(NavLink)`
   }
 `;
 export const Main = styled.main`
-  padding-bottom: 50px;
+  flex: 1 1 auto;
 `;
 export const Footer = styled.footer`
   box-shadow: 0px 1px 4px #6f5a59;
@@ -33,5 +33,5 @@ export const Footer = styled.footer`
   height: 20px;
 `;
 export const Wrapper = styled.div`
-  min-height: 100%;
+  min-height: 100vh;
 `;
