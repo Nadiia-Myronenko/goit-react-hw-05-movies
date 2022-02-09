@@ -25,10 +25,7 @@ export const Layout = () => {
           <Outlet />
         </Main>
       </Wrapper>
-      <Footer>
-        Developed by Myronenko Nadiia <a href="tel:+380966873203"></a>&copy;
-        January 2022
-      </Footer>
+      <Footer>Developed by Myronenko Nadiia &copy; January 2022</Footer>
     </>
     //Outlet point, where will be rest content
   );
